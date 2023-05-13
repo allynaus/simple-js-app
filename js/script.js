@@ -1,5 +1,6 @@
 //adding simple command//
-alert(Hello World!);
+
+alert('Hello World!');
 
 /* this is where I started practicing with variables and commands for a basic understanding of how JavaScript works*/
 
