@@ -4,3 +4,4 @@ let pokemonList = [
     {name: 'Squirtle', height: '0.5 m', type: 'Water'},
     {name: 'Ponyta', height: '1 m', type: 'fire'}
 ];
+console.log(pokemonList);
