@@ -9,10 +9,10 @@ console.log(pokemonList);
 //adding a loop to create a list of pokemon and their attributes
 for (let i=0; i < pokemonList.length; i++) {
     if (pokemonList[i].height <0.10 && pokemonList.height[i].height >0.3){
-        document.write(pokemonList[i].name + " is small");
+        document.write(<br> + pokemonList[i].name + " is small" + </br>);
     }else if (pokemonList[i].height <0.7){
-        document.write(pokemonList[i].name + " is medium");
+        document.write(<br> + pokemonList[i].name + " is medium" + </br>);
     }else {
-        document.write(pokemonList[i].name + " is big");
+        document.write(<br> + pokemonList[i].name + " is big" + </br>);
     }
 }
