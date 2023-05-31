@@ -34,6 +34,6 @@ pokemonRepository.add({ name: 'Bulbasaur' });
 console.log(pokemonRepository.getAll()); // [ { name: 'Bulbasaur' } ]
 
 //adding a forEach loop to create a list of pokemon and their attributes
-pokemonRepository.getAll().forEach(function(pokemon) {
+pokemonRepository.getAll().forEach(function(pokemonList) {
     console.log(pokemon.name + ' is ' + pokemon.height + ' this tall. ');
 });
