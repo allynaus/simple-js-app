@@ -1,3 +1,4 @@
+let pokemonRepository = (function () {
 //array of pokemon types and names
 let pokemonList = [
     {
@@ -18,8 +19,21 @@ let pokemonList = [
 ];
 console.log(pokemonList);
 
+return {
+    add: function(pokemon) {
+        pokemonList.push(pokemon);
+    },
+    getAll: function() {
+        return pokemonList;
+    }
+};
+})();
+
+console.log(pokemonRepository.getAll()); // []
+pokemonRepository.add({ name: 'Bulbasaur' });
+console.log(pokemonRepository.getAll()); // [ { name: 'Bulbasaur' } ]
+
 //adding a forEach loop to create a list of pokemon and their attributes
 pokemonList.forEach(function(pokemon) {
     console.log(pokemon.name + ' is ' + pokemon.height + ' this tall. ');
 });
-
