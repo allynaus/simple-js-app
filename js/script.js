@@ -26,6 +26,14 @@ return {
     getAll: function() {
         return pokemonList;
     }
+
+function addList(pokemonList) {
+
+   let pokemonList = document.querySelector('.pokemon-list');
+   let button = document.createElement('button');
+   button.innerText = "Click Me";
+   container.appendChild(button);
+}
 };
 })();
 
