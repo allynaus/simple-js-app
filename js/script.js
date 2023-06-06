@@ -17,31 +17,47 @@ let pokemonList = [
      type: 'fire'
     }
 ];
+
 console.log(pokemonList);
 
+function showDetails(pokemon) {
+    console.log(pokemon);
+}
+
+function addListItem(pokemon) {
+    //this will select my <ul class="pokemon-list"> in HTML
+    let pokemonList = document.querySelector('.pokemon-list');
+    //this creates a <li> tag
+    let listItem = document.createElement('li');
+    //this will create a <button> tag
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+    //this will call showDetails when the button is clicked
+    button.addEventListener('click', function() {
+        showDetails(pokemon)
+    })
+    //this inserts the <button> tag inside the <li> tag
+    //this should look like <li> <button> Bulbaraur </button> </li>
+    listItem.appendChild(button)
+    //this will put the <li> tag inside the <ul> tag
+    //this should look like <ul><li> <button> Bulbasaur </button> </li></ul>
+    pokemonList.appendChild(listItem);
+
+}
+
 return {
+    addListItem: addListItem,
+    showDetails: showDetails,
     add: function(pokemon) {
         pokemonList.push(pokemon);
     },
     getAll: function() {
         return pokemonList;
     }
-
-function addList(pokemonList) {
-
-   let pokemonList = document.querySelector('.pokemon-list');
-   let button = document.createElement('button');
-   button.innerText = "Click Me";
-   container.appendChild(button);
-}
 };
 })();
 
-console.log(pokemonRepository.getAll()); // []
-pokemonRepository.add({ name: 'Bulbasaur' });
 console.log(pokemonRepository.getAll()); // [ { name: 'Bulbasaur' } ]
 
 //adding a forEach loop to create a list of pokemon and their attributes
-pokemonRepository.getAll().forEach(function(pokemon) {
-    console.log(pokemon.name + ' is ' + pokemon.height + ' this tall. ');
-});
+pokemonRepository.getAll().forEach(pokemonRepository.addListItem); 
