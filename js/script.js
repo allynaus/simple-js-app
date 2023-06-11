@@ -5,99 +5,81 @@ let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
 //other functions remain here
 
-function loadList() {
-    return fetch(apiUrl).then(function (response) {
-        return response.json();
-    }).then(function (json) {
-       json.results.forEach(finction (item) {
-        let pokemon = {
-            name: item.name,
-            detailsUrl: item.url
-        };
-        add(pokemon);
-      });
-    }).catch(function (e) {
-        console.error(e);
-    }
-
-    return {
-        add: add,
-        getAll: getAll,
-        loadList: loadlist
-    };
-})();
-
-pokemonRepository.loadList().then(function() {
-    // data is now loaded!
-    pokemonRepository.getAll().forEach(function(pokemon){
-        pokemonRepository.addListItem(pokemon);
-    });
-});
-
-let pokemonRepository = (function() {
-    //other functions here
-
-    function loadDetails(item) {
+async function loadDetails(item) {
+    try {
         let url = item.detailsUrl;
         const response = await fetch(url);
         const details = await response.json();
         //now add the details to the item
         item.imageUrl = details.sprites.front_default;
         item.height = details.height;
-        item.types = details.types;catch(function (e) {
-            console.error(e);
-        });
+        item.types = details.types;
     }
-  return {
-    add: add,
-    getAll: getAll,
-    loadList: loadlist,
-    loadDetails: loadDetails
-  };
-})();
-
-console.log(pokemonList);
-
+    catch(e) {
+        console.error(e);
+    }
+}
+function add (pokemon) {
+    pokemonList.push(pokemon);
+}
+function loadList() {
+    return fetch(apiUrl).then(function (response) {
+        return response.json();
+    }).then(function (json) {
+        json.results.forEach(function (item) {
+            let pokemon = {
+                name: item.name,
+                detailsUrl: item.url
+            };
+            add(pokemon);
+        });
+    }).catch(function (e) {
+        console.error(e);
+    })
+}
+ 
 function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-      console.log(pokemon);
+        console.log(pokemon);
     });
 }
 
 function addListItem(pokemon) {
-    //this will select my <ul class="pokemon-list"> in HTML
+    //this selects my <ul class="pokemon-list"> in HTML
     let pokemonList = document.querySelector('.pokemon-list');
     //this creates a <li> tag
     let listItem = document.createElement('li');
     //this will create a <button> tag
     let button = document.createElement('button');
+    //this adds the pokemon name to the button
     button.innerText = pokemon.name;
     //this will call showDetails when the button is clicked
     button.addEventListener('click', function() {
         showDetails(pokemon)
     })
     //this inserts the <button> tag inside the <li> tag
-    //this should look like <li> <button> Bulbaraur </button> </li>
+    //this should look like <li> <button> Bulbasaur </button> </li>
     listItem.appendChild(button)
     //this will put the <li> tag inside the <ul> tag
     //this should look like <ul><li> <button> Bulbasaur </button> </li></ul>
     pokemonList.appendChild(listItem);
-
 }
 
 return {
+    loadList,
     addListItem: addListItem,
     showDetails: showDetails,
-    add: function(pokemon) {
-        pokemonList.push(pokemon);
-    },
+    add,
     getAll: function() {
         return pokemonList;
     }
 };
+
 })();
 
-console.log(pokemonRepository.getAll()); // [ { name: 'Bulbasaur' } ]
-
-//adding a forEach loop to create a list of pokemon and their attributes
-pokemonRepository.getAll().forEach(pokemonRepository.addListItem); 
+pokemonRepository.loadList().then(function() {
+    //data is now loaded!
+    pokemonRepository.getAll().forEach(function(pokemon){
+        pokemonRepository.addListItem(pokemon);
+    });
+});
