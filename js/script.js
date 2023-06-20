@@ -44,6 +44,17 @@ function showDetails(pokemon) {
     });
 }
 
+function showModal(pokemon) {
+    
+    let modalTitle = document.querySelector(".modal-title");
+    modalTitle.innerText = pokemon,name;
+
+    
+    let pokemonHeight = document.querySelector(".pokemon-height");
+    pokemonHeight.innerText = pokemon.height 
+}
+
+
 function addListItem(pokemon) {
     //this selects my <ul class="pokemon-list"> in HTML
     let pokemonList = document.querySelector('.pokemon-list');
