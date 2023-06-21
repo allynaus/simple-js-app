@@ -40,7 +40,7 @@ function loadList() {
  
 function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-        console.log(pokemon);
+        showModal(pokemon);
     });
 }
 
@@ -86,7 +86,7 @@ if (pokemon.imageUrl) {
 }
 
 //append the modal to the modal container
-modal.appendChild(modal);
+modalContainer.appendChild(modal);
 
 //add the 'is-visible' class to the modal contianer to show it
 modalContainer.classList.add('is-visible');
@@ -109,6 +109,8 @@ modalContainer.addEventListener('click', (e) => {
         hideModal();
     }
 });
+
+}
 
 function hideModal() {
     let modalContainer = document.querySelector('#modal-container');
