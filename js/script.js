@@ -151,6 +151,10 @@ return {
 
 })();
 
+let listItem = document.createElement('li');
+
+listItem.classList.add('list-group-item')
+
 pokemonRepository.loadList().then(function() {
     //data is now loaded!
     pokemonRepository.getAll().forEach(function(pokemon){
