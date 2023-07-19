@@ -46,85 +46,50 @@ function showDetails(pokemon) {
 
 //function to show the modal with Pokemon info
 function showModal(pokemon) {
-    //select the modal container element
-    let modalContainer = document.querySelector('#modal-container');
-    //clear the contents of the modal container
-    modalContainer.innerHTML = '';
+    let modalContent = document.querySelector(".modal-body");
+    modalContent.innerHTML = "";
+        let newModal = document.createElement("div");
+        newModal.classList.add("newModal");
 
-    //create the modal element
-    let modal = document.createElement('div');
-    modal.classList.add('modal');
+        let titleElement = document.createElement("h1");
+        titleElement.innerText = pokemon.name;
 
-    //create the close button element
-    let closeButtonElement = document.createElement('button');
-    closeButtonElement.classList.add('modal-close');
-    closeButtonElement.innerText = 'Close';
+        let contentElement = document.createElement("p");
+        contentElement.innerText = "Height;" + pokemon.height;
 
-    //create the title element and set its text to the Pokemen name
-    let titleElement = document.createElement('h1');
-    titleElement.innerText = pokemon.name;
+        let imgPokemon = document.createElement("img");
+        imgPokemon.classList.add("pokemon_img");
+        imgPokemon.src = pokemon.imageUrl;
+        imgPokemon.alt = pokemon.name;
 
-    //create the content element and set its text to the Pokemon height
-    let contentElement = document.createElement('p');
-    contentElement.innerText = 'Height: ' + pokemon.height;
-    
-   // Append the close button, title, and content elements to the modal
-   modal.appendChild(closeButtonElement);
-   modal.appendChild(titleElement);
-   modal.appendChild(contentElement);
+        newModal.appendChild(titleElement);
+        newModal.appendChild(contentElement);
+        newModal.appendChild(imgPokemon);
+        modalContent.appendChild(newModal);
 
-// Check if the pokemon has an image URL
-if (pokemon.imageUrl) {
-    //create an image element and set its attributes
-    let imagePokemon = document.createElement('img');
-    imagePokemon.setAttribute('src', pokemon.imageUrl);
-    imagePokemon.setAttribute('height', '230');
-    imagePokemon.setAttribute('width', '300');
-    imagePokemon.setAttribute('alt', 'Pokemon Image');
-    //append the image element to the modal
-    modal.appendChild(imagePokemon);
-}
-
-//append the modal to the modal container
-modalContainer.appendChild(modal);
-
-//add the 'is-visible' class to the modal contianer to show it
-modalContainer.classList.add('is-visible');
-
-//add an event listener to the close button to hide the modal
-closeButtonElement.addEventListener('click', hideModal);
-
-//add an event listener to the window to hide the modal when the 'Escape' key is pressed
-window.addEventListener('keydown', (e) => {
-    let modalContainer = document.querySelector('#modal-container');
-    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-        hideModal();
+        modalContent.addEventListener("click", (e) => {
+            let target = e.target;
+            if (target === modalContent) {
+                hideModal();
+            }
+        });
     }
-});
-
-// add an event listener to the modal contianer to hide the modal when clicked outside the modal
-modalContainer.addEventListener('click', (e) => {
-    let target = e.target;
-    if (target === modalContainer) {
-        hideModal();
-    }
-});
-
-}
 
 function hideModal() {
     let modalContainer = document.querySelector('#modal-container');
     modalContainer.classList.remove('is-visible');
 }
 
-
 function addListItem(pokemon) {
     //this selects my <ul class="pokemon-list"> in HTML
     let pokemonList = document.querySelector('.pokemon-list');
     //this creates a <li> tag
     let listItem = document.createElement('li');
+    listItem.classList.add('list-group-item')
     //this will create a <button> tag
     let button = document.createElement('button');
+    button.setAttribute("data-toggle", "modal");
+    button.setAttribute("data-target", "exampleModal");
     //this adds the pokemon name to the button
     button.innerText = pokemon.name;
     //this will call showDetails when the button is clicked
