@@ -89,7 +89,7 @@ function addListItem(pokemon) {
     //this will create a <button> tag
     let button = document.createElement('button');
     button.setAttribute("data-toggle", "modal");
-    button.setAttribute("data-target", "exampleModal");
+    button.setAttribute("data-target", "#exampleModal");
     //this adds the pokemon name to the button
     button.innerText = pokemon.name;
     //this will call showDetails when the button is clicked
