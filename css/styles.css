@@ -25,3 +25,7 @@ pokemon-list {
     flex-wrap: wrap;
     gap: 5px;
 }
+
+pokemon-list div {
+    flex-basis: 30%;
+}
