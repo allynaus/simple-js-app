@@ -116,7 +116,7 @@ return {
 
 })();
 
-let listItem = document.createElement('li');
+let listItem = document.createElement('div');
 
 listItem.classList.add('list-group-item')
 

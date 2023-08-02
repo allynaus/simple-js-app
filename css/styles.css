@@ -19,3 +19,9 @@ button {
     cursor: pointer;
     border-radius: 4px;
 }
+
+pokemon-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
