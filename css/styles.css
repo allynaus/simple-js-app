@@ -21,12 +21,9 @@ button {
     width: 100%;
 }
 
-pokemon-list {
+pokemon-list div {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-}
-
-pokemon-list div {
     flex-basis: 30%;
 }
