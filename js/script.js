@@ -118,7 +118,6 @@ return {
 
 let listItem = document.createElement('div');
 
-listItem.classList.add('list-group-item')
 
 pokemonRepository.loadList().then(function() {
     //data is now loaded!
